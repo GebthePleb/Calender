@@ -1,0 +1,42 @@
+@import url(welcome.css);
+
+:root {
+    --primary-color: #158cfc;
+    --main-background: #F2F2F2;
+    --nav-background: white;
+  }
+
+  .hero .container {
+    background: var(--nav-background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 3em 3em 3em 3em;
+  }
+  .psw {
+    background: var(--nav-background);
+  }
+
+  input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  button {
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }

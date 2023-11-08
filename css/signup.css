@@ -1,0 +1,7 @@
+@import url(login.css);
+
+.hero .container {
+    background: var(--nav-background);
+    height: 300px;
+    width: 700px;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendia - Login</title>
+    <link rel="stylesheet" href="css/newevent.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <a class="logo" href="aboutus.html">Calend<span>ia</span></a>
+            <ul class="primary-nav">
+                <li><a href="events.html">Events</a></li>
+                <li class="current"><a href="newevent.html">New Event</a></li>
+                <li><a href="calendar.html">Month view</a></li>
+                <li><a href="weekview.html">Week view</a></li>
+            </ul>
+            <nav class="">
+                
+                <ul class="secondary-nav">
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <section class="hero">
+        <form class="container">
+            <label for="name"><b>Name:</b></label>
+            <input type="text" placeholder="Event Name" name="name" id ="name" required>
+            <label for="location"><b>Location:</b></label>
+            <input type="text" placeholder="Event Location" id="location" name="location">
+
+            <div>
+                <label for="date"><b>Date:</b></label>
+                <input type="date" name="date" id="date" required>
+            </div>
+            <div>
+                <label for="time"><b>Time:</b></label>
+                <input type="time" name="time" id="time">
+            </div>
+
+            <label for="description"><b>Location:</b></label>
+            <textarea type="text" placeholder="Event description" name="description"></textarea>
+            
+            <label>
+                <input type="checkbox" checked="checked" name="remind"> Remind me
+              </label>
+            <button type="submit">Create</button>
+            <script>
+                // get the form object
+                const myForm = document.querySelector("#signup-form");
+                // add event listener for the submit event
+                myForm.addEventListener("submit", function (e) {
+                let name = document.querySelector("#name").value;
+                let loc = document.querySelector("#location").value;
+                let date = document.querySelector("#date").value;
+                let time = document.querySelector("#time").value;
+                // creating object and JSON from the form info
+                const info = {Name:name, LOC:loc, Date:date, Time:time};
+                let myTextJSON = JSON.stringify(info);
+                // storing them in the local computer
+                console.log(myTextJSON)
+                alert(myTextJSON)
+                });
+            </script>
+        </form>
+    </section>
+</body>
+</html>

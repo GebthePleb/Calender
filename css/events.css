@@ -1,0 +1,19 @@
+@import url(login.css);
+
+body {
+    background: #F2F2F2;
+  }
+
+.navbar .current a {
+    font-weight: bold;
+  }
+.navbar li a {
+    text-decoration: none;
+}
+.navbar li{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.navbar .primary-nav {
+    display: flex;
+}

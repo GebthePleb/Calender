@@ -1,0 +1,25 @@
+@import url(events.css);
+
+.hero .container {
+    background: var(--nav-background);
+    margin-top: 3em;
+    height: 630px;
+    width: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 3em 3em 3em 3em;
+  }
+  #header {
+    margin-top: -2.5em;
+    font-size: 24px;
+  }
+  table {
+    border: solid 1pt black;
+    border-collapse: collapse;
+  }
+  td{
+    border: solid 1pt black;
+    padding: 5pt
+  }

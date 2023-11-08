@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendia - Login</title>
+    <link rel="stylesheet" media="all and (min-width: 1024px) and (max-width: 1920px)" href="css/weekview.css">
+    <link rel="stylesheet" media="all and (min-width: 480px) and (max-width: 1024px)" href="css/weekview_small.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="container">
+            <a class="logo" href="aboutus.html">Calend<span>ia</span></a>
+            <ul class="primary-nav">
+                <li><a href="events.html">Events</a></li>
+                <li><a href="newevent.html">New Event</a></li>
+                <li><a href="calendar.html">Month view</a></li>
+                <li class="current"><a href="weekview.html">Week view</a></li>
+            </ul>
+            <nav class="">
+                
+                <ul class="secondary-nav">
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div id="container">
+            <div id="header">
+              <div>
+                <button id="backButton"><--</button>
+              </div>
+              
+              <div id="weekDisplay"></div>
+              <div>
+                <button id="nextButton">--></button>
+              </div>
+            </div>
+      
+            <div id="weekdays">
+              <div>Sunday</div>
+              <div>Monday</div>
+              <div>Tuesday</div>
+              <div>Wednesday</div>
+              <div>Thursday</div>
+              <div>Friday</div>
+              <div>Saturday</div>
+            </div>
+      
+            <div id="week"></div>
+          </div>
+      
+      
+          <script src="./week.js"></script>
+    </section>
+</body>
+</html>

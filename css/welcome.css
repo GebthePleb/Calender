@@ -1,0 +1,173 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+:root {
+    --primary-color: #158cfc;
+    --main-background: #F2F2F2;
+    --nav-background: white;
+  }
+  
+  body {
+    margin: 0;
+    font-family: "Poppins";
+  }
+
+  body {
+    background: linear-gradient(-45deg, #58a7f1, #8168f3, #158cfc, #2b5a85);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+
+  @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+  }
+  .navbar {
+    background: var(--nav-background);
+    padding: 1em;
+  }
+
+  .navbar .logo {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    font-size: 1.2em;
+  }
+  .navbar .logo span {
+    color: var(--primary-color);
+  }
+
+  .navbar .container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    place-content: space-between;
+  }
+
+  a {
+    color: #444444;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .secondary-nav {
+    display: flex;
+  }
+  .secondary-nav li{
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+
+  .navbar nav li.login-cta a {
+    color: var(--primary-color);
+    border: 3px solid var(--primary-color);
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 5em;
+    margin-top: -.2em;
+  }
+  .navbar nav li.login-cta a:hover {
+    background: var(--primary-color);
+    color: var(--nav-background);
+  }
+
+  .navbar nav li.login-cta a {
+    text-decoration: none;
+    color: var(--primary-color);
+    border: 3px solid var(--primary-color);
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 5em;
+    margin-top: -.2em;
+  }
+  .navbar nav li.login-cta a:hover {
+    background: var(--primary-color);
+    color: var(--nav-background);
+  }
+
+  .navbar nav li.signup-cta a {
+    text-decoration: none;
+    color: black;
+    border: 3px solid black;
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 5em;
+    margin-top: -.2em;
+  }
+  .navbar nav li.signup-cta a:hover {
+    background: black;
+    color: var(--nav-background);
+  }
+  .hero {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+
+  }
+  .left-col .subhead {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: gray;
+    letter-spacing: 0.3em;
+  }
+  .left-col h1 {
+    font-size: 2.5em;
+    line-height: 1.3em;
+    margin-top: 0.2em;
+  }
+  .left-col .primary-cta {
+    background: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    padding: 0.6em 1.3em;
+    font-size: 1.4em;
+    border-radius: 5em;
+    font-weight: bold;
+    display: inline-block;
+  }
+  .hero-img{
+    width: 50%;
+    height: auto;
+    margin-top: 3em;
+  }
+  .hero .container {
+    background: var(--nav-background);
+    height: 300px;
+    width: 700px;
+    border-radius: 2em;
+    margin-top: 10em;
+    padding-bottom: 5em;
+    display: flex;
+    text-align: left;
+  }
+  .hero .container .left-col {
+    margin: 3em 0 0 5em;
+  }
+  .hero .container .left-col h1 {
+    font-size: 3em;
+    width: 90%;
+  }
+  .hero-cta {
+    display: flex;
+  }
+
+  .hero-cta a {
+    background-color: var(--primary-color);
+  }
+
+  .hero-cta a:hover {
+    background-color: #0bad26;
+    -webkit-transition: background-color 1000ms linear;
+    -ms-transition: background-color 1000ms linear;
+    transition: background-color 1000ms linear;
+   }
