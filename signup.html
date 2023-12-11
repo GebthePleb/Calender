@@ -10,46 +10,47 @@
 <body>
     <div class="navbar">
         <div class="container">
-            <a class="logo" href="index.html">Calend<span>ia</span></a>
+            <a class="logo" href="index.php">Calend<span>ia</span></a>
             <nav class="">
                 <ul class="secondary-nav">
-                    <li class="login-cta"><a href="login.html">Login</a></li>
+                    <li class="login-cta"><a href="login.php">Login</a></li>
                 </ul>
             </nav>
         </div>
     </div>
 
+    <script>
+        function validateForm() {
+            let pass_confirm = document.querySelector("#psw-confirm").value;
+            let pass = document.querySelector("#psw").value;
+            if(pass != pass_confirm){
+                alert("Passwords do not match");
+                document.getElementById("psw").style.borderColor = "red";
+                return false;
+            }
+            else if(pass.length() < 8 ){
+                alert("Password too short");
+                document.getElementById("psw").style.borderColor = "red";
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        </script> 
     <section class="hero">
         <div class="container">
-            <form class="form" id="signup-form">
+            <form class="form" id="signup-form" action="process_signup.php" method="post" onsubmit="return validateForm();">
                 <label for="uname"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="uname" required id="uname">
+                <input type="text" placeholder="Enter Email" name="uname" type="email" required id="uname">
             
                 <label for="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="psw" required id="psw">
 
-                <label for="psw"><b>Confirm Password</b></label>
-                <input type="password" placeholder="Confirm Password" name="psw" required>
+                <label for="psw-confirm"><b>Confirm Password</b></label>
+                <input type="password" placeholder="Confirm Password" name="psw-confirm" id="psw-confirm" required>
                     
-                <button type="submit">Sign-Up</button>
-                <script>
-                    const myJSONText = document.getElementById("finalJSONText");
-                    // get the form object
-                    const myForm = document.querySelector("#signup-form");
-                    // add event listener for the submit event
-                    myForm.addEventListener("submit", function (e) {
-                    let email = document.querySelector("#uname").value;
-                    let pass = document.querySelector("#psw").value;
-                    // creating object and JSON from the form info
-                    const info = {Email:email, PWD:pass};
-                    let myTextJSON = JSON.stringify(info);
-                    // storing them in the local computer
-                    console.log(myTextJSON)
-                    alert(myTextJSON)
-                    localStorage.setItem("JSONInfo", myTextJSON);
-                    });
-                </script>
-                    
+                <button type="submit">Sign-Up</button>                   
             </form>
             
         </div>

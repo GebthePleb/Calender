@@ -10,10 +10,10 @@
 <body>
     <div class="navbar">
         <div class="container">
-            <a class="logo" href="index.html">Calend<span>ia</span></a>
+            <a class="logo" href="index.php">Calend<span>ia</span></a>
             <nav class="">
                 <ul class="secondary-nav">
-                    <li class="login-cta"><a href="login.html">Login</a></li>
+                    <li class="login-cta"><a href="login.php">Login</a></li>
                     <li class="signup-cta"><a href="signup.html">Sign-Up</a></li>
                 </ul>
             </nav>
@@ -27,7 +27,7 @@
                 <h1>A useful Calendar.</h1>
 
                 <div class="hero-cta">
-                    <a href="login.html" class="primary-cta">Login and Try</a>
+                    <a href="login.php" class="primary-cta">Login and Try</a>
                 </div>
             </div>
                 

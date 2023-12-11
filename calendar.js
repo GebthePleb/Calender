@@ -1,76 +1,117 @@
 let nav = 0;
 let clicked = null;
-//try to parse a local file for events, if this fails then make an empty array
-let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : []; 
-//get our calendar reference from the html file
-const calendar = document.getElementById('calendar');
+let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
 
-//this helps us to determine how to position the calendar 
+const calendar = document.getElementById('calendar');
+const newEventModal = document.getElementById('newEventModal');
+const deleteEventModal = document.getElementById('deleteEventModal');
+const backDrop = document.getElementById('modalBackDrop');
+const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
+function openModal(date) {
+  clicked = date;
 
-function load() {
-  const date = new Date();
+  const eventForDay = events.find(e => e.date === clicked);
 
-  //this is how the calendar changes
-  if (nav !== 0) {
-    date.setMonth(new Date().getMonth() + nav);
+  if (eventForDay) {
+    document.getElementById('eventText').innerText = eventForDay.title;
+    deleteEventModal.style.display = 'block';
+  } else {
+    newEventModal.style.display = 'block';
   }
 
-  //These are method from the built in JS date objects
-  const day = date.getDate();
-  const month = date.getMonth();
-  const year = date.getFullYear();
+  backDrop.style.display = 'block';
+}
+
+function load() {
+  const dt = new Date();
+
+  if (nav !== 0) {
+    dt.setMonth(new Date().getMonth() + nav);
+  }
+
+  const day = dt.getDate();
+  const month = dt.getMonth();
+  const year = dt.getFullYear();
 
   const firstDayOfMonth = new Date(year, month, 1);
-  //this is a clever way to get how many days are in the given month
-  //We give the year and month+1, when passing 0 it is the last day of the previous month
-  //then by calling get date we will get the last day of the given month. 
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-
   
-  // passing it the us calendar
   const dateString = firstDayOfMonth.toLocaleDateString('en-us', {
-    weekday: 'long', //this is a way of editing the information we want from the function call
+    weekday: 'long',
     year: 'numeric',
     month: 'numeric',
     day: 'numeric',
   });
-  // this outputs something like this : Friday, 2023 November 3
-  //simple string manipulation to get out the day of the week
-  const padding = weekdays.indexOf(dateString.split(', ')[0]);
+  const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
 
   document.getElementById('monthDisplay').innerText = 
-    `${date.toLocaleDateString('en-us', { month: 'long' })} ${year}`;
+    `${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`;
 
   calendar.innerHTML = '';
 
-  for(let i = 1; i <= padding + daysInMonth; i++) {
-    // these are the squares used to represent the days
-    const day = document.createElement('div');
-    day.classList.add('day');
+  for(let i = 1; i <= paddingDays + daysInMonth; i++) {
+    const daySquare = document.createElement('div');
+    daySquare.classList.add('day');
 
-    const dayString = `${month + 1}/${i - padding}/${year}`;
+    const dayString = `${month + 1}/${i - paddingDays}/${year}`;
 
-    if (i > padding) {
-      day.innerText = i - padding;
+    if (i > paddingDays) {
+      daySquare.innerText = i - paddingDays;
       const eventForDay = events.find(e => e.date === dayString);
 
-      if (i - padding === day && nav === 0) {
-        day.id = 'currentDay';
+      if (i - paddingDays === day && nav === 0) {
+        daySquare.id = 'currentDay';
       }
+
       if (eventForDay) {
-        //this is where I can add my events to the calendar
-        continue
+        const eventDiv = document.createElement('div');
+        eventDiv.classList.add('event');
+        eventDiv.innerText = eventForDay.title;
+        daySquare.appendChild(eventDiv);
       }
+
+      daySquare.addEventListener('click', () => openModal(dayString));
     } else {
-      day.classList.add('padding');
+      daySquare.classList.add('padding');
     }
 
-    calendar.appendChild(day);    
+    calendar.appendChild(daySquare);    
   }
 }
 
+function closeModal() {
+  eventTitleInput.classList.remove('error');
+  newEventModal.style.display = 'none';
+  deleteEventModal.style.display = 'none';
+  backDrop.style.display = 'none';
+  eventTitleInput.value = '';
+  clicked = null;
+  load();
+}
+
+function saveEvent() {
+  if (eventTitleInput.value) {
+    eventTitleInput.classList.remove('error');
+
+    events.push({
+      date: clicked,
+      title: eventTitleInput.value,
+    });
+
+    localStorage.setItem('events', JSON.stringify(events));
+    closeModal();
+  } else {
+    eventTitleInput.classList.add('error');
+  }
+}
+
+function deleteEvent() {
+  events = events.filter(e => e.date !== clicked);
+  localStorage.setItem('events', JSON.stringify(events));
+  closeModal();
+}
 
 function initButtons() {
   document.getElementById('nextButton').addEventListener('click', () => {
@@ -82,8 +123,13 @@ function initButtons() {
     nav--;
     load();
   });
+
+  document.getElementById('saveButton').addEventListener('click', saveEvent);
+  document.getElementById('cancelButton').addEventListener('click', closeModal);
+  document.getElementById('deleteButton').addEventListener('click', deleteEvent);
+  document.getElementById('closeButton').addEventListener('click', closeModal);
 }
 
 initButtons();
-//as soon as the browser loads this file it will call this to load the calender 
 load();
+

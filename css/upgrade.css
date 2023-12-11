@@ -1,0 +1,24 @@
+@import url(events.css);
+
+.hero .container {
+    background: var(--nav-background);
+    margin-top: 3em;
+    height: 100px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  #header {
+    font-size: 24px;
+  }
+  /* .hero{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 3em 3em 3em 3em;
+    padding-top: 15em;
+  }
+
+   */ 

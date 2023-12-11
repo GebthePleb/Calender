@@ -12,25 +12,35 @@
         <div class="container">
             <a class="logo" href="aboutus.html">Calend<span>ia</span></a>
             <ul class="primary-nav">
-                <li><a href="events.html">Events</a></li>
-                <li><a href="newevent.html">New Event</a></li>
                 <li><a href="calendar.html">Month view</a></li>
                 <li><a href="weekview.html">Week view</a></li>
             </ul>
             <nav class="">
                 
                 <ul class="secondary-nav">
-                    <li class="current"><a href="profile.html">Profile</a></li>
+                    <li class="current"><a href="profile.php">Profile</a></li>
                 </ul>
             </nav>
         </div>
     </div>
+    <?php
+    session_start();
 
+    $mysqli = require __DIR__ . "/database.php";
+    $stmt = $mysqli->prepare('SELECT * FROM cart WHERE user_id=?');
+    $stmt->bind_param('s', $_SESSION['user_id']);
+    $stmt->execute();
+    $total = 0;
+    $result = $stmt->get_result();
+    foreach ($result as $row) {
+        $total = $total + $row['amount'];
+    }
+    ?>
     <section class="hero">
         <div class="container">
             <menu class="form">
-                <label class="uname"><b>Email:</b></label>
-                <span class="uname-value">Your Email</span>
+                <label class="uname"><b>Cart Total:</b></label>
+                <span class="uname-value"><?php echo $total?>$</span>
         
                 <label>
                   <input type="checkbox" checked="checked" name="reminders"> Recieve event emails
@@ -42,7 +52,7 @@
                     <input type="checkbox" name="updates"> Recieve information about Calendia updates
                 </label>
     
-                <a href="index.html"><button type="button" class="logout">Logout</button></a>
+                <a href="index.php"><button type="button" class="logout">Logout</button></a>
                 <button type="button" class="delete-account">Delete Account</button>
             </menu >
         </div>
